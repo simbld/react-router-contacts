@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
+import { getContact } from '../contacts';
 
 export default function Root() {
 	return (
@@ -38,4 +39,9 @@ export default function Root() {
 			</div>
 		</>
 	);
+}
+
+export async function loader() {
+	const contacts = await getContact();
+	return { contacts };
 }
