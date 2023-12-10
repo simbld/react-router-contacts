@@ -80,5 +80,5 @@ function Favorite({ contact }) {
 	);
 }
 Favorite.propTypes = {
-	contact: PropTypes.string.isRequired,
+	contact: PropTypes.object.isRequired,
 };
