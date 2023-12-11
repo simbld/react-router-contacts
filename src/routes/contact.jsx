@@ -1,11 +1,18 @@
 import { Form, useFetcher, useLoaderData } from 'react-router-dom';
-import { getContact } from '../contacts';
+import { getContact, updateContact } from '../contacts';
 
 import PropTypes from 'prop-types';
 
 export async function loader({ params }) {
 	const contact = await getContact(params.contactId);
 	return { contact };
+}
+
+export async function action({ request, params }) {
+	let formData = await request.formData();
+	return updateContact(params.contactId, {
+		favorite: formData.get('favorite') === 'true',
+	});
 }
 
 export default function Contact() {
